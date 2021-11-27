@@ -13,7 +13,7 @@ export default function App() {
   return (
     <Router>
       <div>
-        <span>Hello</span>
+        
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <ul className="navbar-nav">
             <li className="nav-item">
@@ -23,7 +23,7 @@ export default function App() {
                 exact
                 to="/"
               >
-                Home 2
+                Home
               </NavLink>
             </li>
             <li className="nav-item">

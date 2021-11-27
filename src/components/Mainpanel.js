@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { getLocalUsers, getContentItems } from "../utils/request";
+import { getLocalUsers } from "../utils/request";
 
 const styles = {
   dashCard: {
@@ -19,23 +19,27 @@ const styles = {
   },
 };
 
-const Mainpanel = () => {
-  const [content, setContent] = useState([]);
-  const [users, setUsers] = useState([]);
 
+
+const Mainpanel = () => {
+
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getLocalUsers().then((res) => {
       setUsers(res.items);
+      setLoading(false);
     });
   }, []);
+  const ShowUsers = () =>  {
+    return users.map((item, idx) => <div key={idx}>{item.name}</div>);
+  };
 
   return (
     <React.Fragment>
       <div style={styles.wrapper}>
         <section className="card-deck">
-            {users.map((item, idx) => (
-              <li key={idx}>{item.name}</li>
-            ))}       
+          {loading ? <h2> loading... </h2> : <ShowUsers />}
         </section>
       </div>
     </React.Fragment>
